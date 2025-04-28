@@ -49,13 +49,15 @@ public class GestorDeTareas<T> {
         return (T) tareaMasPrioritaria;
     }
 
-    public void invertirTareas() {
-        List<T> listaInvertida = new LinkedList<>();
-        for (int i = tareas.size() - 1; i >= 0; i--) {
-            listaInvertida.add(tareas.get(i));
+    //metodo invertirlista ejercicio 2
+    public static <T> List<T> invertirLista(List<T> lista) {
+        List<T> nuevaLista = new LinkedList<>();
+        for (int i = lista.size() - 1; i >= 0; i--) {
+            nuevaLista.add(lista.get(i));
         }
-        tareas = listaInvertida;
+        return nuevaLista;
     }
+    
 
     public List<T> getTareas() {
         return tareas;
