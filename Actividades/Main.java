@@ -70,7 +70,7 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.print("\nIntroduce el título de la tarea para verificar si existe: ");
+                    System.out.print("\nIntroduce el titulo de la tarea para verificar si existe: ");
                     String tareaExistente = scanner.nextLine();
                     boolean existe = false;
                     for (Tarea tarea : gestorDeTareas.getTareas()) {
@@ -87,7 +87,7 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.println("\nNúmero total de tareas: " + gestorDeTareas.contarTareas());
+                    System.out.println("\nNumero total de tareas: " + gestorDeTareas.contarTareas());
                     break;
 
                 case 6:
@@ -105,7 +105,7 @@ public class Main {
                     break;
 
                 case 8:
-                    System.out.print("\nIntroduce el título de la tarea para transferir a completadas: ");
+                    System.out.print("\nIntroduce el ttulo de la tarea para transferir a completadas: ");
                     String tareaTransferir = scanner.nextLine();
                     Tarea tareaTransferida = null;
                     for (Tarea tarea : gestorDeTareas.getTareas()) {
@@ -136,7 +136,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Opción no válida, intenta de nuevo.");
+                    System.out.println("Opción no valida, intenta de nuevo.");
             }
         }
     }
