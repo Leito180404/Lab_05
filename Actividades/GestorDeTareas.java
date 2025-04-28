@@ -59,5 +59,13 @@ public class GestorDeTareas<T> {
     public List<T> getTareas() {
         return tareas;
     }
+    public static <T> boolean buscarElemento(List<T> lista, T elemento) {
+        for (T item : lista) {
+            if (item.equals(elemento)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
