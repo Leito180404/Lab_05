@@ -128,8 +128,24 @@ public class Main {
                         System.out.println(tarea);
                     }
                     break;
-
                 case 10:
+                    System.out.print("\nIntroduce el titulo de la tarea a buscar: ");
+                    String tituloBuscar = scanner.nextLine();
+                    Tarea tareaBuscar = null;
+                    for (Tarea tarea : gestorDeTareas.getTareas()) {
+                        if (tarea.getTitulo().equals(tituloBuscar)) {
+                            tareaBuscar = tarea;
+                            break;
+                        }
+                    }
+                    if (tareaBuscar != null && GestorDeTareas.buscarElemento(gestorDeTareas.getTareas(), tareaBuscar)) {
+                        System.out.println("Tarea encontrada: " + tareaBuscar);
+                    } else {
+                        System.out.println("Tarea no encontrada.");
+                    }
+                    break;
+
+                case 11:
                     System.out.println("¡Hasta luego!");
                     scanner.close();
                     System.exit(0);
