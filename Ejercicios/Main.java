@@ -15,7 +15,6 @@ public class Main {
 
         List<Tarea> tareasCompletadas = new LinkedList<>();
 
-
         gestorDeTareas.agregarTarea(tarea1);
         gestorDeTareas.agregarTarea(tarea2);
         gestorDeTareas.agregarTarea(tarea3);
@@ -31,7 +30,11 @@ public class Main {
             System.out.println("7. Invertir el orden de las tareas");
             System.out.println("8. Transferir tarea a completadas");
             System.out.println("9. Ver tareas completadas");
-            System.out.println("10. Salir");
+            System.out.println("10. Insertar nodo al final");
+            System.out.println("11. Contar nodos en lista");
+            System.out.println("12. Comparar dos listas");
+            System.out.println("13. Concatenar dos listas");
+            System.out.println("14. Salir");
             System.out.print("Elige una opcion: ");
 
             int opcion = scanner.nextInt();
@@ -39,30 +42,30 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    System.out.print("\nIntroduce el título de la tarea: ");
+                    System.out.print("\nIntroduce el titulo de la tarea: ");
                     String titulo = scanner.nextLine();
-                    System.out.print("Introduce la prioridad de la tarea (número): ");
+                    System.out.print("Introduce la prioridad de la tarea (numero): ");
                     int prioridad = scanner.nextInt();
                     scanner.nextLine();
                     Tarea nuevaTarea = new Tarea(titulo, prioridad);
                     gestorDeTareas.agregarTarea(nuevaTarea);
-                    System.out.println("Tarea agregada con éxito.");
+                    System.out.println("Tarea agregada con exito.");
                     break;
 
                 case 2:
-                    System.out.print("\nIntroduce el título de la tarea a eliminar: ");
+                    System.out.print("\nIntroduce el titulo de la tarea a eliminar: ");
                     String tareaEliminar = scanner.nextLine();
                     boolean tareaEliminada = false;
                     for (Tarea tarea : gestorDeTareas.getTareas()) {
                         if (tarea.getTitulo().equals(tareaEliminar)) {
                             gestorDeTareas.eliminarTarea(tarea);
                             tareaEliminada = true;
-                            System.out.println("Tarea eliminada con éxito.");
+                            System.out.println("Tarea eliminada con exito.");
                             break;
                         }
                     }
                     if (!tareaEliminada) {
-                        System.out.println("La tarea no se encontró.");
+                        System.out.println("La tarea no se encontro.");
                     }
                     break;
 
@@ -132,24 +135,27 @@ public class Main {
                         System.out.println(tarea);
                     }
                     break;
-                case 10:
-                    System.out.print("\nIntroduce el titulo de la tarea a buscar: ");
-                    String tituloBuscar = scanner.nextLine();
-                    Tarea tareaBuscar = null;
-                    for (Tarea tarea : gestorDeTareas.getTareas()) {
-                        if (tarea.getTitulo().equals(tituloBuscar)) {
-                            tareaBuscar = tarea;
-                            break;
-                        }
-                    }
-                    if (tareaBuscar != null && GestorDeTareas.buscarElemento(gestorDeTareas.getTareas(), tareaBuscar)) {
-                        System.out.println("Tarea encontrada: " + tareaBuscar);
-                    } else {
-                        System.out.println("Tarea no encontrada.");
-                    }
+
+                case 10: 
+                    System.out.print("\nIntroduce el valor a insertar al final: ");
+                    String valor = scanner.nextLine();
+                    // Agregar a la lista de tareas (asumiendo que tienes una lista de nodos de tareas)
+                    // Este paso asume que estás usando los métodos de Node (si estás trabajando con una LinkedList).
                     break;
 
-                case 11:
+                case 11:  // Contar nodos en lista
+                    System.out.println("\nTotal de nodos en la lista: " + insertaralfinal.contNo(gestorDeTareas.getTareas()));
+                    break;
+
+                case 12:  // Comparar dos listas
+                    System.out.print("\nIntroduce el valor para la segunda lista (en formato Nodo): ");
+                    break;
+
+                case 13:  // Concatenar listas
+                    System.out.print("\nIntroduce el valor para la segunda lista (en formato Nodo): ");
+                    break;
+
+                case 14:
                     System.out.println("¡Hasta luego!");
                     scanner.close();
                     System.exit(0);
@@ -161,3 +167,4 @@ public class Main {
         }
     }
 }
+
