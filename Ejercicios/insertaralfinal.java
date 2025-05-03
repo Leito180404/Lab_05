@@ -1,0 +1,19 @@
+package Ejercicios;
+
+public class insertaralfinal {
+        public static <T> Node<T> insertarAlFinal(Node<T> head, T valor) {
+            Node<T> nuevoNodo = new Node<>(valor);
+    
+            if (head == null) {
+                return nuevoNodo;
+            }
+    
+            Node<T> actual = head;
+            while (actual.getNext() != null) {
+                actual = actual.getNext();
+            }
+    
+            actual.setNext(nuevoNodo);
+            return head;
+        }
+}
