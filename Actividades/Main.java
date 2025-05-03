@@ -29,7 +29,9 @@ public class Main {
             System.out.println("7. Invertir el orden de las tareas");
             System.out.println("8. Transferir tarea a completadas");
             System.out.println("9. Ver tareas completadas");
-            System.out.println("10. Salir");
+            System.out.println("10. buscar tarea");
+            System.out.println("11. Salir");
+
             System.out.print("Elige una opcion: ");
 
             int opcion = scanner.nextInt();
