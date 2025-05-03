@@ -1,74 +1,121 @@
 package Ejercicios;
-import java.util.LinkedList;
-import java.util.List;
 
 public class GestorDeTareas<T> {
-    private List<T> tareas;
+    private Node<T> tareas;
 
     public GestorDeTareas() {
-        tareas = new LinkedList<>(); 
+        tareas = null;
     }
 
     public void agregarTarea(T tarea) {
-        tareas.add(tarea);
+        Node<T> nuevoNodo = new Node<>(tarea);
+        if (tareas == null) {
+            tareas = nuevoNodo;
+        } else {
+            Node<T> temp = tareas;
+            while (temp.getNext() != null) {
+                temp = temp.getNext();
+            }
+            temp.setNext(nuevoNodo);
+        }
+    }
+
+    public Node<T> getTareas() {
+        return tareas;
     }
 
     public boolean eliminarTarea(T tarea) {
-        return tareas.remove(tarea);  
+        if (tareas == null) return false;
+        
+        if (tareas.getDato().equals(tarea)) {
+            tareas = tareas.getNext();
+            return true;
+        }
+
+        Node<T> temp = tareas;
+        while (temp.getNext() != null) {
+            if (temp.getNext().getDato().equals(tarea)) {
+                temp.setNext(temp.getNext().getNext());
+                return true;
+            }
+            temp = temp.getNext();
+        }
+        return false;
     }
 
     public boolean contieneTarea(T tarea) {
-        return tareas.contains(tarea);  
+        Node<T> temp = tareas;
+        while (temp != null) {
+            if (temp.getDato().equals(tarea)) {
+                return true;
+            }
+            temp = temp.getNext();
+        }
+        return false;
     }
 
     public void imprimirTareas() {
-        for (T tarea : tareas) {
-            System.out.println(tarea);
+        Node<T> temp = tareas;
+        while (temp != null) {
+            System.out.println(temp.getDato());
+            temp = temp.getNext();
         }
     }
 
     public int contarTareas() {
-        return tareas.size(); 
+        int count = 0;
+        Node<T> temp = tareas;
+        while (temp != null) {
+            count++;
+            temp = temp.getNext();
+        }
+        return count;
     }
 
-
     public T obtenerTareaMasPrioritaria() {
-        if (tareas.isEmpty() || !(tareas.get(0) instanceof Tarea)) {
-            return null; 
+        if (tareas == null || !(tareas.getDato() instanceof Tarea)) {
+            return null;
         }
 
-        Tarea tareaMasPrioritaria = (Tarea) tareas.get(0);
-        for (T tarea : tareas) {
-            if (tarea instanceof Tarea) {
-                Tarea tareaActual = (Tarea) tarea;
+        Tarea tareaMasPrioritaria = (Tarea) tareas.getDato();
+        Node<T> temp = tareas;
+        while (temp != null) {
+            if (temp.getDato() instanceof Tarea) {
+                Tarea tareaActual = (Tarea) temp.getDato();
                 if (tareaActual.getPrioridad() < tareaMasPrioritaria.getPrioridad()) {
                     tareaMasPrioritaria = tareaActual;
                 }
             }
+            temp = temp.getNext();
         }
         return (T) tareaMasPrioritaria;
     }
 
-    //metodo invertirlista ejercicio 2
-    public static <T> List<T> invertirLista(List<T> lista) {
-        List<T> nuevaLista = new LinkedList<>();
-        for (int i = lista.size() - 1; i >= 0; i--) {
-            nuevaLista.add(lista.get(i));
+    // Metodo para invertir lista de nodos
+    public static <T> Node<T> invertirLista(Node<T> head) {
+        Node<T> prev = null;
+        Node<T> current = head;
+        Node<T> next = null;
+        
+        while (current != null) {
+            next = current.getNext();
+            current.setNext(prev);
+            prev = current;
+            current = next;
         }
-        return nuevaLista;
-    }
-    
+        
+        return prev;
+    }//ejercicio2
 
-    public List<T> getTareas() {
-        return tareas;
-    }
-    //metodo buscar elemento ejercicio 1
-    public static <T> boolean buscarElemento(List<T> lista, T elemento) {
-        for (T item : lista) {
-            if (item.equals(elemento)) {
+    public static <T> boolean buscarElemento(Node<T> head, T elemento) {
+        Node<T> temp = head;
+        while (temp != null) {
+            if (temp.getDato().equals(elemento)) {
                 return true;
             }
+            temp = temp.getNext();
         }
         return false;
     }
-}
+}//ejercicio 1
+
