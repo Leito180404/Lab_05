@@ -8,12 +8,11 @@ public class Main {
     public static void main(String[] args) {
         GestorDeTareas<Tarea> gestorDeTareas = new GestorDeTareas<>();
         Scanner scanner = new Scanner(System.in);
+        List<Tarea> tareasCompletadas = new LinkedList<>();
 
         Tarea tarea1 = new Tarea("Estudiar Java", 2);
         Tarea tarea2 = new Tarea("Hacer ejercicio", 1);
         Tarea tarea3 = new Tarea("Leer un libro", 3);
-
-        List<Tarea> tareasCompletadas = new LinkedList<>();
 
         gestorDeTareas.agregarTarea(tarea1);
         gestorDeTareas.agregarTarea(tarea2);
@@ -55,16 +54,10 @@ public class Main {
                 case 2:
                     System.out.print("\nIntroduce el titulo de la tarea a eliminar: ");
                     String tareaEliminar = scanner.nextLine();
-                    boolean tareaEliminada = false;
-                    for (Tarea tarea : gestorDeTareas.getTareas()) {
-                        if (tarea.getTitulo().equals(tareaEliminar)) {
-                            gestorDeTareas.eliminarTarea(tarea);
-                            tareaEliminada = true;
-                            System.out.println("Tarea eliminada con exito.");
-                            break;
-                        }
-                    }
-                    if (!tareaEliminada) {
+                    boolean tareaEliminada = gestorDeTareas.eliminarTarea(new Tarea(tareaEliminar, 0)); // Asumiendo que prioridad 0 es un valor genérico para eliminar
+                    if (tareaEliminada) {
+                        System.out.println("Tarea eliminada con exito.");
+                    } else {
                         System.out.println("La tarea no se encontro.");
                     }
                     break;
@@ -77,13 +70,7 @@ public class Main {
                 case 4:
                     System.out.print("\nIntroduce el titulo de la tarea para verificar si existe: ");
                     String tareaExistente = scanner.nextLine();
-                    boolean existe = false;
-                    for (Tarea tarea : gestorDeTareas.getTareas()) {
-                        if (tarea.getTitulo().equals(tareaExistente)) {
-                            existe = true;
-                            break;
-                        }
-                    }
+                    boolean existe = gestorDeTareas.contieneTarea(new Tarea(tareaExistente, 0));
                     if (existe) {
                         System.out.println("La tarea existe en la lista.");
                     } else {
@@ -105,26 +92,18 @@ public class Main {
                     break;
 
                 case 7:
-                    List<Tarea> tareasInvertidas = GestorDeTareas.invertirLista(gestorDeTareas.getTareas());
-                    gestorDeTareas.getTareas().clear();
-                    gestorDeTareas.getTareas().addAll(tareasInvertidas);
+                    gestorDeTareas.setTareas(GestorDeTareas.invertirLista(gestorDeTareas.getTareas()));
                     System.out.println("\nLas tareas han sido invertidas.");
                     break;
 
                 case 8:
-                    System.out.print("\nIntroduce el ttulo de la tarea para transferir a completadas: ");
+                    System.out.print("\nIntroduce el titulo de la tarea para transferir a completadas: ");
                     String tareaTransferir = scanner.nextLine();
-                    Tarea tareaTransferida = null;
-                    for (Tarea tarea : gestorDeTareas.getTareas()) {
-                        if (tarea.getTitulo().equals(tareaTransferir)) {
-                            tareaTransferida = tarea;
-                            tareasCompletadas.add(tarea);
-                            gestorDeTareas.eliminarTarea(tarea);
-                            System.out.println("Tarea transferida a tareas completadas.");
-                            break;
-                        }
-                    }
-                    if (tareaTransferida == null) {
+                    Tarea tareaTransferida = new Tarea(tareaTransferir, 0);
+                    if (gestorDeTareas.eliminarTarea(tareaTransferida)) {
+                        tareasCompletadas.add(tareaTransferida);
+                        System.out.println("Tarea transferida a tareas completadas.");
+                    } else {
                         System.out.println("No se encontro la tarea para transferir.");
                     }
                     break;
@@ -136,22 +115,23 @@ public class Main {
                     }
                     break;
 
-                case 10: 
+                case 10:
                     System.out.print("\nIntroduce el valor a insertar al final: ");
                     String valor = scanner.nextLine();
-                    // Agregar a la lista de tareas (asumiendo que tienes una lista de nodos de tareas)
-                    // Este paso asume que estás usando los métodos de Node (si estás trabajando con una LinkedList).
+                    Node<Tarea> head = gestorDeTareas.getTareas(); 
+                    Node<Tarea> listaConNodoAgregado = insertaralfinal.insertarAlFinal(head, new Tarea(valor, 1));  // Aquí pasas el valor directamente
+                    gestorDeTareas.setTareas(listaConNodoAgregado);
+                    System.out.println("Nodo insertado al final con exito.");
                     break;
-
-                case 11:  // Contar nodos en lista
+                case 11:
                     System.out.println("\nTotal de nodos en la lista: " + insertaralfinal.contNo(gestorDeTareas.getTareas()));
                     break;
 
-                case 12:  // Comparar dos listas
+                case 12:
                     System.out.print("\nIntroduce el valor para la segunda lista (en formato Nodo): ");
                     break;
 
-                case 13:  // Concatenar listas
+                case 13:
                     System.out.print("\nIntroduce el valor para la segunda lista (en formato Nodo): ");
                     break;
 
@@ -167,4 +147,3 @@ public class Main {
         }
     }
 }
-

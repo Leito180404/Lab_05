@@ -20,6 +20,10 @@ public class GestorDeTareas<T> {
         }
     }
 
+    public void setTareas(Node<T> tareas) {
+        this.tareas = tareas;
+    }
+    
     public Node<T> getTareas() {
         return tareas;
     }
