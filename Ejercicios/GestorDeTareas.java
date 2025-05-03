@@ -4,17 +4,16 @@ public class GestorDeTareas<T> {
     private Node<T> tareas;
 
     public GestorDeTareas() {
-        tareas = null;
+        tareas = null; 
     }
 
-    public void agregarTarea(T tarea) {
-        Node<T> nuevoNodo = new Node<>(tarea);
+    public void agregarTarea(Node<T> nuevoNodo) {
         if (tareas == null) {
-            tareas = nuevoNodo;
+            tareas = nuevoNodo; 
         } else {
             Node<T> temp = tareas;
             while (temp.getNext() != null) {
-                temp = temp.getNext();
+                temp = temp.getNext(); 
             }
             temp.setNext(nuevoNodo);
         }
@@ -23,7 +22,7 @@ public class GestorDeTareas<T> {
     public void setTareas(Node<T> tareas) {
         this.tareas = tareas;
     }
-    
+
     public Node<T> getTareas() {
         return tareas;
     }
@@ -95,7 +94,6 @@ public class GestorDeTareas<T> {
         return (T) tareaMasPrioritaria;
     }
 
-    // Metodo para invertir lista de nodos
     public static <T> Node<T> invertirLista(Node<T> head) {
         Node<T> prev = null;
         Node<T> current = head;

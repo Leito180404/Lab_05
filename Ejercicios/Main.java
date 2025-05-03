@@ -54,7 +54,7 @@ public class Main {
                 case 2:
                     System.out.print("\nIntroduce el titulo de la tarea a eliminar: ");
                     String tareaEliminar = scanner.nextLine();
-                    boolean tareaEliminada = gestorDeTareas.eliminarTarea(new Tarea(tareaEliminar, 0)); // Asumiendo que prioridad 0 es un valor genérico para eliminar
+                    boolean tareaEliminada = gestorDeTareas.eliminarTarea(new Tarea(tareaEliminar, 0)); 
                     if (tareaEliminada) {
                         System.out.println("Tarea eliminada con exito.");
                     } else {
@@ -119,7 +119,7 @@ public class Main {
                     System.out.print("\nIntroduce el valor a insertar al final: ");
                     String valor = scanner.nextLine();
                     Node<Tarea> head = gestorDeTareas.getTareas(); 
-                    Node<Tarea> listaConNodoAgregado = insertaralfinal.insertarAlFinal(head, new Tarea(valor, 1));  // Aquí pasas el valor directamente
+                    Node<Tarea> listaConNodoAgregado = insertaralfinal.insertarAlFinal(head, new Tarea(valor, 1));
                     gestorDeTareas.setTareas(listaConNodoAgregado);
                     System.out.println("Nodo insertado al final con exito.");
                     break;
@@ -128,7 +128,35 @@ public class Main {
                     break;
 
                 case 12:
-                    System.out.print("\nIntroduce el valor para la segunda lista (en formato Nodo): ");
+                    Tarea tarea1_1 = new Tarea("Estudiar Java", 2);
+                    Tarea tarea1_2 = new Tarea("Hacer ejercicio", 1);
+                    Tarea tarea1_3 = new Tarea("Leer un libro", 3);
+                
+                    Node<Tarea> nodo1_1 = new Node<>(tarea1_1);
+                    Node<Tarea> nodo1_2 = new Node<>(tarea1_2);
+                    Node<Tarea> nodo1_3 = new Node<>(tarea1_3);
+                
+                    nodo1_1.setNext(nodo1_2);
+                    nodo1_2.setNext(nodo1_3);
+                
+                    // Crear la segunda lista con las tareas ya definidas en tu código
+                    Tarea tarea2_1 = new Tarea("Estudiar Java", 2);
+                    Tarea tarea2_2 = new Tarea("Hacer ejercicio", 1);
+                    Tarea tarea2_3 = new Tarea("Leer un libro", 3);
+                
+                    Node<Tarea> nodo2_1 = new Node<>(tarea2_1);
+                    Node<Tarea> nodo2_2 = new Node<>(tarea2_2);
+                    Node<Tarea> nodo2_3 = new Node<>(tarea2_3);
+                
+                    nodo2_1.setNext(nodo2_2);
+                    nodo2_2.setNext(nodo2_3);
+
+                    boolean sonIguales = insertaralfinal.ifsoniguales(nodo1_1,nodo2_1);
+                    if (sonIguales) {
+                        System.out.println("\nLas listas son iguales.");
+                    } else {
+                        System.out.println("\nLas listas no son iguales.");
+                    }
                     break;
 
                 case 13:
