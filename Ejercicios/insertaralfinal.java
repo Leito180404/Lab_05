@@ -17,3 +17,4 @@ public class insertaralfinal {
             return head;
         }
 }
+//ejercicio 3
