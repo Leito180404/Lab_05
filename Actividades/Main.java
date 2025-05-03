@@ -152,7 +152,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Opción no valida, intenta de nuevo.");
+                    System.out.println("Opcion no valida, intenta de nuevo.");
             }
         }
     }
