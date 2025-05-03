@@ -102,7 +102,9 @@ public class Main {
                     break;
 
                 case 7:
-                    gestorDeTareas.invertirTareas();
+                    List<Tarea> tareasInvertidas = GestorDeTareas.invertirLista(gestorDeTareas.getTareas());
+                    gestorDeTareas.getTareas().clear();
+                    gestorDeTareas.getTareas().addAll(tareasInvertidas);
                     System.out.println("\nLas tareas han sido invertidas.");
                     break;
 
@@ -154,7 +156,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Opción no valida, intenta de nuevo.");
+                    System.out.println("Opcion no valida, intenta de nuevo.");
             }
         }
     }
