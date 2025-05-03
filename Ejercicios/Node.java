@@ -24,6 +24,23 @@ public class Node<T> {
     public void setNext(Node<T> next) {
         this.next = next;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false; 
+        }
+        Node<?> otherNode = (Node<?>) obj;
+        return dato.equals(otherNode.dato);
+    }
+
+   
+    @Override
+    public int hashCode() {
+        return dato.hashCode();
+    }
 
     @Override
     public String toString() {

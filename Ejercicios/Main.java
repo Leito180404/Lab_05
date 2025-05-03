@@ -14,9 +14,26 @@ public class Main {
         Tarea tarea2 = new Tarea("Hacer ejercicio", 1);
         Tarea tarea3 = new Tarea("Leer un libro", 3);
 
-        gestorDeTareas.agregarTarea(tarea1);
-        gestorDeTareas.agregarTarea(tarea2);
-        gestorDeTareas.agregarTarea(tarea3);
+        Node<Tarea> nodo1 = new Node<>(tarea1);
+        Node<Tarea> nodo2 = new Node<>(tarea2);
+        Node<Tarea> nodo3 = new Node<>(tarea3);
+
+        nodo1.setNext(nodo2);
+        nodo2.setNext(nodo3);
+
+        gestorDeTareas.setTareas(nodo1);
+
+        Tarea tarea2_1 = new Tarea("Estudiar Java", 2);
+        Tarea tarea2_2 = new Tarea("Hacer ejercicio", 1);
+        Tarea tarea2_3 = new Tarea("Leer un libro", 3);
+    
+        Node<Tarea> nodo2_1 = new Node<>(tarea2_1);
+        Node<Tarea> nodo2_2 = new Node<>(tarea2_2);
+        Node<Tarea> nodo2_3 = new Node<>(tarea2_3);
+    
+        nodo2_1.setNext(nodo2_2);
+        nodo2_2.setNext(nodo2_3);
+
 
         while (true) {
             System.out.println("\n---- Bienvenido al menu mi causayin ----");
@@ -47,7 +64,8 @@ public class Main {
                     int prioridad = scanner.nextInt();
                     scanner.nextLine();
                     Tarea nuevaTarea = new Tarea(titulo, prioridad);
-                    gestorDeTareas.agregarTarea(nuevaTarea);
+                    Node<Tarea> nuevoNodo = new Node<>(nuevaTarea);
+                    gestorDeTareas.agregarTarea(nuevoNodo); 
                     System.out.println("Tarea agregada con exito.");
                     break;
 
@@ -123,46 +141,29 @@ public class Main {
                     gestorDeTareas.setTareas(listaConNodoAgregado);
                     System.out.println("Nodo insertado al final con exito.");
                     break;
+
                 case 11:
                     System.out.println("\nTotal de nodos en la lista: " + insertaralfinal.contNo(gestorDeTareas.getTareas()));
                     break;
 
-                case 12:
-                    Tarea tarea1_1 = new Tarea("Estudiar Java", 2);
-                    Tarea tarea1_2 = new Tarea("Hacer ejercicio", 1);
-                    Tarea tarea1_3 = new Tarea("Leer un libro", 3);
-                
-                    Node<Tarea> nodo1_1 = new Node<>(tarea1_1);
-                    Node<Tarea> nodo1_2 = new Node<>(tarea1_2);
-                    Node<Tarea> nodo1_3 = new Node<>(tarea1_3);
-                
-                    nodo1_1.setNext(nodo1_2);
-                    nodo1_2.setNext(nodo1_3);
-                
-                    // Crear la segunda lista con las tareas ya definidas en tu código
-                    Tarea tarea2_1 = new Tarea("Estudiar Java", 2);
-                    Tarea tarea2_2 = new Tarea("Hacer ejercicio", 1);
-                    Tarea tarea2_3 = new Tarea("Leer un libro", 3);
-                
-                    Node<Tarea> nodo2_1 = new Node<>(tarea2_1);
-                    Node<Tarea> nodo2_2 = new Node<>(tarea2_2);
-                    Node<Tarea> nodo2_3 = new Node<>(tarea2_3);
-                
-                    nodo2_1.setNext(nodo2_2);
-                    nodo2_2.setNext(nodo2_3);
-
-                    boolean sonIguales = insertaralfinal.ifsoniguales(nodo1_1,nodo2_1);
+                    case 12:
+                    boolean sonIguales = insertaralfinal.ifsoniguales(nodo1, nodo2_1); 
                     if (sonIguales) {
                         System.out.println("\nLas listas son iguales.");
                     } else {
                         System.out.println("\nLas listas no son iguales.");
                     }
                     break;
-
-                case 13:
-                    System.out.print("\nIntroduce el valor para la segunda lista (en formato Nodo): ");
+    
+                case 13: 
+                    Node<Tarea> listaConcatenada = insertaralfinal.concatenarListas(nodo1, nodo2_1);
+                    System.out.println("\nLista concatenada:");
+                    Node<Tarea> temp = listaConcatenada;
+                    while (temp != null) {
+                        System.out.println(temp.getDato());
+                        temp = temp.getNext();
+                    }
                     break;
-
                 case 14:
                     System.out.println("¡Hasta luego!");
                     scanner.close();
@@ -175,3 +176,5 @@ public class Main {
         }
     }
 }
+
+

@@ -30,19 +30,18 @@ public class insertaralfinal {
         }//ejercicio 4
 
         public static <T> boolean ifsoniguales(Node<T> lista1, Node<T> lista2) {
-            Node<T> actual1 = lista1;
-            Node<T> actual2 = lista2;
+            Node<T> temp1 = lista1;
+            Node<T> temp2 = lista2;
         
-            while (actual1 != null && actual2 != null) {
-                if (!actual1.getDato().equals(actual2.getDato())) {
-                    return false;
+            while (temp1 != null && temp2 != null) {
+                if (!temp1.equals(temp2)) {
+                    return false; 
                 }
-                actual1 = actual1.getNext();
-                actual2 = actual2.getNext();
+                temp1 = temp1.getNext();
+                temp2 = temp2.getNext();
             }
-        
-            return actual1 == null && actual2 == null;  // Ambos deben ser null al final
-        }//ejercicio 5
+            return temp1 == null && temp2 == null; }  // Ambos deben ser null al final
+        //ejercicio 5
         
         public static <T> Node<T> concatenarListas(Node<T> lista1, Node<T> lista2) {
             Node<T> nuevaLista = null;
