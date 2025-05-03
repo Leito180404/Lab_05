@@ -15,6 +15,18 @@ public class insertaralfinal {
     
             actual.setNext(nuevoNodo);
             return head;
-        }
+        } //ejercicio3
+
+        public static <T> int contarNodos(Node<T> head) {
+            int contador = 0;
+            Node<T> actual = head;
+        
+            while (actual != null) {
+                contador++;
+                actual = actual.getNext();
+            }
+        
+            return contador;
+        }//ejercicio 4
+        
 }
-//ejercicio 3
